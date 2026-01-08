@@ -25,10 +25,9 @@ function App() {
     formData.append('model', model);
 
     try {
-      // Assuming backend is running on default port or proxy is set up.
-      // Since create-vite doesn't setup proxy by default, we will try standard localhost:8000
-      // If CORS is an issue, we might need to adjust, but backend has CORS allowed for *
-      const res = await axios.post('http://localhost:8000/process_pdfs', formData, {
+      // Using environment variable for API URL
+      // Ensure VITE_API_URL is set in .env file
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/process_pdfs`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
